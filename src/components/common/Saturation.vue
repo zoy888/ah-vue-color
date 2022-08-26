@@ -56,12 +56,6 @@ export default {
         // for some edge cases, container may not exist. see #220
         return
       }
-      container.addEventListener('touchmove', (e) => {
-        e.stopPropagation()
-      })
-      container.addEventListener('mousemove', (e) => {
-        e.stopPropagation()
-      })
       var containerWidth = container.clientWidth
       var containerHeight = container.clientHeight
 

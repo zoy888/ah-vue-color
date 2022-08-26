@@ -14,8 +14,8 @@ import Hue from './components/common/Hue.vue'
 import Saturation from './components/common/Saturation.vue'
 import ColorMixin from './mixin/color.js'
 
-const VueColor = {
-  version: '2.8.1',
+const AHVueColor = {
+  version: '1.0.2',
   Compact,
   Grayscale,
   Twitter,
@@ -33,4 +33,4 @@ const VueColor = {
   ColorMixin
 }
 
-module.exports = VueColor
+module.exports = AHVueColor
