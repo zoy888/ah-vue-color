@@ -1,16 +1,17 @@
 <template>
   <div class="vc-saturation"
     :style="{background: bgColor}"
-    ref="container"    
+    ref="container"
+    @click="handleChange"
     >
     <div class="vc-saturation--white"></div>
     <div class="vc-saturation--black"></div>
     <div
       class="vc-saturation-pointer"
       :style="{top: pointerTop, left: pointerLeft}"
-      @touchstart="handleChange"
-      @touchmove="handleChange"
-      @mousedown="handleMouseDown"
+      @touchstart.stop="handleChange"
+      @touchmove.stop="handleChange"
+      @mousedown.stop="handleMouseDown"
       >
       <div class="vc-saturation-circle"></div>
     </div>
@@ -55,6 +56,12 @@ export default {
         // for some edge cases, container may not exist. see #220
         return
       }
+      container.addEventListener('touchmove', (e) => {
+        e.stopPropagation()
+      })
+      container.addEventListener('mousemove', (e) => {
+        e.stopPropagation()
+      })
       var containerWidth = container.clientWidth
       var containerHeight = container.clientHeight
 

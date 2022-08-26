@@ -2197,6 +2197,12 @@ exports.default = {
       if (!container) {
         return;
       }
+      container.addEventListener('touchmove', function (e) {
+        e.stopPropagation();
+      });
+      container.addEventListener('mousemove', function (e) {
+        e.stopPropagation();
+      });
       var containerWidth = container.clientWidth;
       var containerHeight = container.clientHeight;
 
@@ -6634,7 +6640,8 @@ var render = function() {
     {
       ref: "container",
       staticClass: "vc-saturation",
-      style: { background: _vm.bgColor }
+      style: { background: _vm.bgColor },
+      on: { click: _vm.handleChange }
     },
     [
       _c("div", { staticClass: "vc-saturation--white" }),
@@ -6647,9 +6654,18 @@ var render = function() {
           staticClass: "vc-saturation-pointer",
           style: { top: _vm.pointerTop, left: _vm.pointerLeft },
           on: {
-            touchstart: _vm.handleChange,
-            touchmove: _vm.handleChange,
-            mousedown: _vm.handleMouseDown
+            touchstart: function($event) {
+              $event.stopPropagation()
+              return _vm.handleChange($event)
+            },
+            touchmove: function($event) {
+              $event.stopPropagation()
+              return _vm.handleChange($event)
+            },
+            mousedown: function($event) {
+              $event.stopPropagation()
+              return _vm.handleMouseDown($event)
+            }
           }
         },
         [_c("div", { staticClass: "vc-saturation-circle" })]
