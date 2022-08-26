@@ -4,9 +4,7 @@
 
 Color Pickers for Sketch, Photoshop, Chrome & more with Vue.js(vue2.0).  
 
-## [Live demo](http://xiaokaike.github.io/ah-vue-color/)
-
-![intro](./intro.png)
+## [Live demo]
 
 ## Installation
 
