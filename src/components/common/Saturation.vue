@@ -35,7 +35,8 @@ export default {
       return `hsl(${this.colors.hsv.h}, 100%, 50%)`
     },
     pointerTop () {
-      return (-(this.colors.hsv.v * 100) + 1) + 100 + '%'
+      // return (-(this.colors.hsv.v * 100) + 1) + 100 + '%'
+      return (-(this.colors.hsv.v * 100) + 0.1) + 100 + '%'
     },
     pointerLeft () {
       return this.colors.hsv.s * 100 + '%'
@@ -101,7 +102,7 @@ export default {
 .vc-saturation,
 .vc-saturation--white,
 .vc-saturation--black {
-  cursor: pointer;
+  cursor: grab;
   position: absolute;
   top: 0;
   left: 0;
@@ -116,11 +117,11 @@ export default {
   background: linear-gradient(to top, #000, rgba(0,0,0,0));
 }
 .vc-saturation-pointer {
-  cursor: pointer;
+  cursor: grab;
   position: absolute;
 }
 .vc-saturation-circle {
-  cursor: head;
+  cursor: grab;
   width: 4px;
   height: 4px;
   box-shadow: 0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3), 0 0 1px 2px rgba(0,0,0,.4);
