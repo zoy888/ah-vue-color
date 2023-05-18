@@ -1802,6 +1802,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = {
   name: 'Hue',
+  inject: ['app'],
   props: {
     value: Object,
     direction: {
@@ -1851,6 +1852,10 @@ exports.default = {
   },
   methods: {
     handleChange: function handleChange(e, skip) {
+      var validate = this.app && this.app.proxyEdit();
+      if (!validate) {
+        return;
+      }
       !skip && e.preventDefault();
 
       var container = this.$refs.container;
@@ -2167,6 +2172,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = {
   name: 'Saturation',
+  inject: ['app'],
   props: {
     value: Object
   },
@@ -2192,6 +2198,10 @@ exports.default = {
       'trailing': false
     }),
     handleChange: function handleChange(e, skip) {
+      var validate = this.app && this.app.proxyEdit();
+      if (!validate) {
+        return;
+      }
       !skip && e.preventDefault();
       var container = this.$refs.container;
       if (!container) {
@@ -5616,9 +5626,18 @@ var render = function() {
           "aria-valuemax": "360"
         },
         on: {
-          mousedown: _vm.handleMouseDown,
-          touchmove: _vm.handleChange,
-          touchstart: _vm.handleChange
+          mousedown: function($event) {
+            $event.stopPropagation()
+            return _vm.handleMouseDown($event)
+          },
+          touchmove: function($event) {
+            $event.stopPropagation()
+            return _vm.handleChange($event)
+          },
+          touchstart: function($event) {
+            $event.stopPropagation()
+            return _vm.handleChange($event)
+          }
         }
       },
       [

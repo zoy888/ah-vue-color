@@ -24,6 +24,7 @@ import throttle from 'lodash.throttle'
 
 export default {
   name: 'Saturation',
+  inject: ['app'],
   props: {
     value: Object
   },
@@ -51,6 +52,10 @@ export default {
         'trailing': false
       }),
     handleChange (e, skip) {
+      var validate = this.app && this.app.proxyEdit()
+      if (!validate) {
+        return
+      }
       !skip && e.preventDefault()
       var container = this.$refs.container
       if (!container) {

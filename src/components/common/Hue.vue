@@ -6,9 +6,9 @@
       aria-valuemin="0"
       aria-valuemax="360"
       ref="container"
-      @mousedown="handleMouseDown"
-      @touchmove="handleChange"
-      @touchstart="handleChange">
+      @mousedown.stop="handleMouseDown"
+      @touchmove.stop="handleChange"
+      @touchstart.stop="handleChange">
       <div class="vc-hue-pointer" :style="{top: pointerTop, left: pointerLeft}" role="presentation">
         <div class="vc-hue-picker"></div>
       </div>
@@ -19,6 +19,7 @@
 <script>
 export default {
   name: 'Hue',
+  inject: ['app'],
   props: {
     value: Object,
     direction: {
@@ -67,6 +68,10 @@ export default {
   },
   methods: {
     handleChange (e, skip) {
+      var validate = this.app && this.app.proxyEdit()
+      if (!validate) {
+        return
+      }
       !skip && e.preventDefault()
 
       var container = this.$refs.container
